@@ -4,7 +4,10 @@
 #include <iostream>
 #include "node.h"
 #include "iterator.h"
+<<<<<<< HEAD
 
+=======
+>>>>>>> e63fce39b868a6f83ef2bb52272892bc15f303b7
 
 using namespace std;
 
@@ -20,8 +23,13 @@ class List {
     public:
         List();
 
+<<<<<<< HEAD
         T front();
         T back();
+=======
+        int front();
+        int back();
+>>>>>>> e63fce39b868a6f83ef2bb52272892bc15f303b7
         void push_front(T value);
         void push_back(T value);
         void pop_front();
@@ -38,6 +46,7 @@ class List {
 
         ~List();
 };
+<<<<<<< HEAD
 
 template<class T> List<T>::List()
 {
@@ -246,4 +255,6 @@ template<class T> List<T>::~List()
     clear();
 
 }
+=======
+>>>>>>> e63fce39b868a6f83ef2bb52272892bc15f303b7
 #endif
