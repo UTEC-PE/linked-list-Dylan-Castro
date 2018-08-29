@@ -166,7 +166,6 @@ template<typename T> void List<T>::pop_back()
 
 template<typename T> void List<T>::push_back(T value)
 {
-    //  INCOMPLETO
     Node<T>* temp = new Node<T>;
     temp->data=value;
     temp->next=NULL;
