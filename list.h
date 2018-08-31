@@ -27,7 +27,7 @@ class List {
         void pop_front();
         void pop_back();
         T get(int position);
-        void concat(List<T> &other);
+        void concat(List<T> &other); // Falta implementar
         bool empty();
         int size();
         void print();
@@ -53,14 +53,14 @@ template<class T> List<T>::List()
 template<typename T> T List<T>::front()
 {
 
-    return(head->data);
+    return(head->data); // Falta controlar el caso de lista vacía
 
 }
 
 template<typename T> T List<T>::back()
 {
 
-    return(tail->data);
+    return(tail->data); // Igual al anterior
 
 }
 
@@ -72,7 +72,7 @@ template<typename T> int List<T>::size()
 template<typename T> bool List<T>::empty()
 {
     bool a=true;
-    if(head==NULL)
+    if(head==NULL) // Esto podría hacerse en una línea: return head == NULL;
     {
         return a;
     }else{
@@ -108,19 +108,20 @@ template<typename T> void List<T>::pop_front()
         Node<T>* temp=head;
 
         temp=head->next;
-        head=NULL;
+        head=NULL; // No es necesario
         delete head;
         head=temp;
-        temp=NULL;
-        delete temp;
+        temp=NULL; // Esto se podría mejorar, lo podemos hablar en clase
+        delete temp; 
 
 
     }else{
         head=NULL;
         tail=NULL;
         delete head;
-        delete tail;
+        delete tail; // Esto tendría que hacerse antes de igualar a NULL
     }
+    // No estás reduciendo los nodos
 }
 template<typename T> T List<T>::get(int position)
 {
@@ -129,11 +130,11 @@ template<typename T> T List<T>::get(int position)
     for(int x=0;x!=position;x++)
     {
 
-        rpta=temp->data;
+        rpta=temp->data; // Estás igualando en cada paso, no es muy óptimo
         temp=temp->next;
     }
-    temp= NULL;
-    delete temp;
+    /*temp= NULL; 
+    delete temp; */ // Esto no es necesario, igual que antes
     return rpta;
 
 }
@@ -160,8 +161,10 @@ template<typename T> void List<T>::pop_back()
         head=NULL;
         tail=NULL;
         delete head;
-        delete tail;
+        delete tail; // Esto tendría que hacerse antes de igualar a NULL
     }
+
+    // No estás reduciendo la cantidad de nodos
 }
 
 template<typename T> void List<T>::push_back(T value)
@@ -180,8 +183,8 @@ template<typename T> void List<T>::push_back(T value)
     }
     tail=temp;
 
-    temp=NULL;
-    delete temp;
+    /*temp=NULL;
+    delete temp;*/ // Esto no es necesario
 
 
 }
@@ -190,16 +193,17 @@ template<typename T> void List<T>::clear()
 {
     if(!empty())
     {
-        while(head!=tail)
+        while(head!=tail) // Te va a faltar borrar el último elemento
         {
             pop_front();
 
         }
         head=NULL;
-        delete head;
+        delete head; // Esto está de más 
+        // Falta igualar tail a NULL
 
     }
-
+    // Deberías igualar la cantidad de nodos a 0
 
 
 }
@@ -207,7 +211,7 @@ template<typename T> void List<T>::clear()
 
 template<typename T> void List<T>::print()
 {
-    Node<T>* temp=new Node<T>;
+    Node<T>* temp=new Node<T>; // No es necesario darle new a este puntero temporal
     temp=head;
     while(temp!=tail)
     {
@@ -216,8 +220,8 @@ template<typename T> void List<T>::print()
 
     }
     cout << tail->data<<endl;
-    temp=NULL;
-    delete temp;
+    /*temp=NULL;
+    delete temp;*/ // Esto está de más
 }
 template<typename T> void List<T>::print_reverse()
 {
@@ -232,9 +236,10 @@ template<typename T> void List<T>::print_reverse()
         temp=temp->next;
 
     }
+    // Va a faltar el último elemento
     //cout << tail->data<<endl    ;
-    temp=NULL;
-    delete temp;
+    /*temp=NULL;
+    delete temp;*/ // Esto está de más
 
     for(int x=nodes;0<x;x--)
     {
